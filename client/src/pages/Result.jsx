@@ -1,15 +1,24 @@
+/**
+ * Result page component for image generation
+ * Handles image generation form and displays results
+ */
 import React, { useState, useContext } from 'react'
 import { assets } from '../assets/assets'
 import { motion } from 'framer-motion'
 import { AppContext } from '../context/AppContext'
 
 const Result = () => {
+  // State management
   const [image, setImage] = useState(assets.sample_img_1)
   const [isImageLoaded, setIsImageLoaded] = useState(false)
   const [loading, setLoading] = useState(false)
   const [input, setInput] = useState('')
   const { generateImage } = useContext(AppContext)
 
+  /**
+   * Handles form submission for image generation
+   * @param {Event} e - Form submit event
+   */
   const onSubmitHandler = async (e) => {
     e.preventDefault()
     setLoading(true)
@@ -23,6 +32,7 @@ const Result = () => {
     setLoading(false)
     setInput('')
   }
+
   return (
     <motion.form
       initial={{ opacity: 0.2, y: 100 }}
@@ -32,6 +42,7 @@ const Result = () => {
       className="flex flex-col min-h-[90vh] justify-center items-center"
       onSubmit={onSubmitHandler}
     >
+      {/* Image display section */}
       <div>
         <div className="relative">
           {' '}

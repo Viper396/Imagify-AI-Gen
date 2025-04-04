@@ -1,3 +1,7 @@
+/**
+ * BuyCredit page component
+ * Handles credit purchase and Razorpay payment integration
+ */
 import React, { useContext } from 'react'
 import { assets, plans } from '../assets/assets.js'
 import { AppContext } from '../context/AppContext.jsx'
@@ -11,6 +15,10 @@ const BuyCredit = () => {
     useContext(AppContext)
   const navigate = useNavigate()
 
+  /**
+   * Initializes Razorpay payment
+   * @param {Object} order - Payment order details
+   */
   const initPay = async (order) => {
     const options = {
       key: import.meta.env.VITE_RAZORPAY_KEY_ID,
@@ -22,6 +30,7 @@ const BuyCredit = () => {
       receipt: order.receipt,
       handler: async (response) => {
         try {
+          // Verify payment with backend
           const { data } = await axios.post(
             `${backendUrl}/api/user/verify-razor`,
             { response },
@@ -30,7 +39,7 @@ const BuyCredit = () => {
           if (data.success) {
             loadCreditsData()
             navigate('/')
-            toast.success('Payment Successful.Credits added to your account')
+            toast.success('Payment Successful. Credits added to your account')
           }
         } catch (error) {
           console.log(error)
@@ -42,15 +51,20 @@ const BuyCredit = () => {
     rzp.open()
   }
 
+  /**
+   * Initiates payment process for selected plan
+   * @param {string} planId - Selected plan identifier
+   */
   const paymentRazorpay = async (planId) => {
     try {
-      if (!user) setShowLogin(true)
+      if (!user) {
+        setShowLogin(true)
+        return
+      }
 
       const { data } = await axios.post(
         `${backendUrl}/api/user/pay-razor`,
-        {
-          planId,
-        },
+        { planId },
         { headers: { token } }
       )
       if (data.success) {
@@ -60,6 +74,7 @@ const BuyCredit = () => {
       toast.error(error.message)
     }
   }
+
   return (
     <motion.div
       className="min-h-[85vh] text-center pt-14 mb-10 "

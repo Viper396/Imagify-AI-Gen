@@ -1,3 +1,7 @@
+/**
+ * Login/Signup modal component
+ * Handles user authentication and registration
+ */
 import React, { useState, useContext, useEffect } from 'react'
 import { assets } from '../assets/assets.js'
 import { AppContext } from '../context/AppContext.jsx'
@@ -6,40 +10,42 @@ import axios from 'axios'
 import { toast } from 'react-toastify'
 
 const Login = () => {
+  // Toggle between Login and Sign Up states
   const [state, setState] = useState('Login')
   const { setShowLogin, backendUrl, setToken, setUser } = useContext(AppContext)
 
+  // Form input states
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
+  /**
+   * Handles form submission for both login and signup
+   * @param {Event} e - Form submit event
+   */
   const onSubmitHandler = async (e) => {
     e.preventDefault()
     try {
       if (state === 'Sign Up') {
+        // Handle registration
         const { data } = await axios.post(`${backendUrl}/api/user/register`, {
           name,
           email,
           password,
         })
         if (data.success) {
-          setToken(data.token)
-          setUser(data.user)
-          localStorage.setItem('token', data.token)
-          setShowLogin(false)
+          handleAuthSuccess(data)
         } else {
           toast.error(data.message)
         }
       } else {
+        // Handle login
         const { data } = await axios.post(`${backendUrl}/api/user/login`, {
           email,
           password,
         })
         if (data.success) {
-          setToken(data.token)
-          setUser(data.user)
-          localStorage.setItem('token', data.token)
-          setShowLogin(false)
+          handleAuthSuccess(data)
         } else {
           toast.error(data.message)
         }
@@ -50,6 +56,18 @@ const Login = () => {
     }
   }
 
+  /**
+   * Handles successful authentication
+   * @param {Object} data - Response data containing token and user info
+   */
+  const handleAuthSuccess = (data) => {
+    setToken(data.token)
+    setUser(data.user)
+    localStorage.setItem('token', data.token)
+    setShowLogin(false)
+  }
+
+  // Disable body scroll when modal is open
   useEffect(() => {
     document.body.style.overflow = 'hidden'
     return () => {
