@@ -1,6 +1,49 @@
 # Imagify AI Image Generator
 
-Generate unique AI images using DALL-E.
+A modern web application that leverages DALL-E's AI to transform text descriptions into stunning images. Built with React, Node.js, and MongoDB, featuring secure authentication and integrated payment processing.
+
+## Screenshots
+
+### Landing Page
+
+![Landing Page](screenshots/landing.png)
+Transform your text into stunning visuals with our AI-powered image generator.
+
+### How It Works
+
+![How It Works](screenshots/how-it-works.png)
+Simple 3-step process to generate your images:
+
+1. Describe Your Vision
+2. Watch the Magic
+3. Download & Share
+
+### AI Image Generation
+
+![AI Generation](screenshots/description.png)
+Our cutting-edge AI technology creates high-quality images from your text descriptions.
+
+### Pricing Plans
+
+![Pricing](screenshots/pricing.png)
+Choose from our flexible pricing plans:
+
+- Basic: $10/100 credits - Best for personal use
+- Advanced: $50/500 credits - Best for business use
+- Business: $250/5000 credits - Best for enterprise use
+
+### Generated Image Example
+
+![Result](screenshots/result.png)
+Download or generate more images with a single click.
+
+## Key Features
+
+- AI-powered image generation using DALL-E
+- User authentication and credit system
+- Secure payment integration with Razorpay
+- Responsive modern UI with Tailwind CSS
+- Image download and sharing capabilities
 
 ## Setup
 
