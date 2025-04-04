@@ -44,7 +44,11 @@ npm run dev
 npm run server
 ```
 
-Open [http://localhost:3000](http://localhost:3000)
+Open [http://localhost:5173](http://localhost:5173)
+
+```bash
+localhost:3000 for server api
+```
 
 ## Features
 
