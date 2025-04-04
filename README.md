@@ -17,17 +17,18 @@ cd imagify-ai-gen-app
 npm install
 ```
 
-3. Configure environment variables
+3. Configure environment variables create 2 env files ( one for client and one for server)
    Create `.env` file in root:
 
 ```
-MONGODB_URL=your_mongodb_connection_string
-NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=your_clerk_publishable_key
-CLERK_SECRET_KEY=your_clerk_secret_key
-OPENAI_API_KEY=your_openai_api_key
-CLOUDINARY_CLOUD_NAME=your_cloudinary_name
-CLOUDINARY_API_KEY=your_cloudinary_api_key
-CLOUDINARY_API_SECRET=your_cloudinary_api_secret
+MONGO_URI = your_mongo-uri
+JWT_SECRET= your_random_jwt_secret
+CLIPDROP_API_KEY = any_ai_or_clipdrop_api_key
+RAZORPAY_KEY_ID= razorpay_id_for_payments
+RAZORPAY_KEY_SECRET= razorpay_secret
+CURRENCY = currenct_for_payments
+VITE_BACKEND_URL= backend_url_localhost:3000
+VITE_RAZORPAY_KEY_ID = same as your razorpay id for backend
 ```
 
 4. Setup MongoDB
@@ -36,10 +37,11 @@ CLOUDINARY_API_SECRET=your_cloudinary_api_secret
 - Create new cluster
 - Get connection string and add to `.env`
 
-5. Run development server
+5. Run development server for client and server by running terminals
 
 ```bash
 npm run dev
+npm run server
 ```
 
 Open [http://localhost:3000](http://localhost:3000)
@@ -50,7 +52,6 @@ Open [http://localhost:3000](http://localhost:3000)
 - Image transformations
 - User authentication
 - Image sharing
-- Cloud storage
 
 ## Deployment
 
